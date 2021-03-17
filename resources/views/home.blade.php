@@ -7,7 +7,11 @@
 @stop
 
 @section('content')
-    <p>Welcome to this beautiful admin panel.</p>
+    @if ($user->roles_id == 1)
+        Anda Login Sebagai Admin!!
+    @else
+        Anda Login Sebagai User
+    @endif
 @stop
 
 @section('footer')
