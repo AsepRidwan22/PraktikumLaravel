@@ -235,6 +235,12 @@ return [
             'can'  => 'isAdmin',
         ],
         [
+            'text' => 'Buku',
+            'url'  => 'admin/books',
+            'icon' => 'fas fa-fw fa-book',
+            'can'  => 'isAdmin',
+        ],
+        [
             'text'        => 'pages',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',

@@ -104,6 +104,33 @@
     {{-- Custom Scripts --}}
     @yield('adminlte_js')
 
+    <script>
+        @if (Session::has('message'))
+            let type = "{{ Session::get('alert-type') }}";
+            switch (type) {
+                case 'info':type
+                    toastr.info("{{ Session::get('message') }}")
+                    break;
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}")
+                    break;
+                case 'warning':type
+                    toastr.info("{{ Session::get('message') }}")
+                    break;
+                case 'error':
+                    toastr.success("{{ Session::get('message') }}")
+                    break;
+
+            }
+        @endif
+        @if($error->any())
+            toastr.error("{{ $error }}");
+        @endif
+        $('#table-data').DataTable();
+        let baseurl = "<?= url('/') ?>";
+        let baseurl = "<?= url()->full() ?>";
+    </script>
+
 </body>
 
 </html>
