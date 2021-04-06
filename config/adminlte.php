@@ -246,6 +246,7 @@ return [
             'text' => 'profile',
             'url'  => 'profile',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'isAdmin',
         ],
         [
             'text' => 'change_password',
