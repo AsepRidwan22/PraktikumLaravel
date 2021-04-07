@@ -123,7 +123,7 @@
 
             }
         @endif
-        @if($error->any())
+        @if($errors->any())
             toastr.error("{{ $error }}");
         @endif
         $('#table-data').DataTable();
