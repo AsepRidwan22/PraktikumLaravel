@@ -134,9 +134,10 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group" id="image-area"></div>
                                 <div class="form-group">
                                     <label for="edit-cover">cover</label>
-                                    <input type="file" class="form-control" name="cover" id="edit-cover" required/>
+                                    <input type="file" class="form-control" name="cover" id="edit-old-cover" required/>
                                 </div>
                             </div>
                         </div>
@@ -169,7 +170,8 @@
         $(function(){
             $(document).on('click', '#btn-edit-buku', function(){
                 let id = $(this).data('id');
-                $('image-area').empty();
+                $('#image-area').empty();
+                console.log(id);
                 $.ajax({
                     type: "get",
                     url: baseurl+'/admin/ajaxadmin/dataBuku/'+id,
@@ -182,6 +184,7 @@
                         $('#edit-id').val(res.id);
                         $('#edit-old-cover').val(res.cover);
 
+                            console.log(baseurl+"/storage/cover_buku/"+res.cover);
                         if (res.cover !== null){
                             $('#image-area').append("<img src='"+baseurl+"/storage/cover_buku/"+res.cover+"' width='200px'/>");
                         } else {
