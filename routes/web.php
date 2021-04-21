@@ -29,7 +29,7 @@ Route::get('user/{name?}', function ($name = 'Asep') {
     return "User " . $name;
 })->where('name', '[A-Za-z]+')->name('regex');
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

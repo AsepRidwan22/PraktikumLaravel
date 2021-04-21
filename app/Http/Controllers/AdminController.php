@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 use App\Models\Book;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -37,13 +38,14 @@ class AdminController extends Controller
         $book->tahun = $req->get('tahun');
         $book->penerbit = $req->get('penerbit');
 
-        if($req->hasFile('cover')){
+        if ($req->hasFile('cover')) {
             $extension = $req->file('cover')->extension();
 
-            $filename = 'cover_buku_'.time().'.'.$extension;
+            $filename = 'cover_buku_' . time() . '.' . $extension;
 
             $req->file('cover')->storeAs(
-                'public/cover_buku', $filename
+                'public/cover_buku',
+                $filename
             );
 
             $book->cover = $filename;
@@ -74,16 +76,14 @@ class AdminController extends Controller
         $book->tahun = $req->get('tahun');
         $book->penerbit = $req->get('penerbit');
 
-        if($req->hasFile('cover')){
+        if ($req->hasFile('cover')) {
             $extension = $req->file('cover')->extension();
 
-            $filename = 'cover_buku_'.time().'.'.$extension;
+            $filename = 'cover_buku_' . time() . '.' . $extension;
 
-            $req->file('cover')->storeAs(
-                'public/cover_buku', $filename
-            );
+            $req->file('cover')->storeAs('public/cover_buku', $filename);
 
-            Storage::delete('public/cover_buku/'.$req->get('old_cover'));
+            Storage::delete('pubic/cover_buku/' . $req->get('old_cover'));
 
             $book->cover = $filename;
         }

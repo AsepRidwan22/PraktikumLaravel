@@ -40,7 +40,7 @@
                                     <td>{{ $book->penerbit }}</td>
                                     <td>
                                         @if ($book->cover !== null)
-                                            <img src="{{ asset('storage/cover_buku/'.$book->cover) }}" width="100px">
+                                            <img width="100" src="{{ asset('storage/cover_buku/'.$book->cover) }}" width="100px">
                                         @else
                                             [Gambar Tidak Tersedia]
                                         @endif
@@ -137,13 +137,13 @@
                                 <div class="form-group" id="image-area"></div>
                                 <div class="form-group">
                                     <label for="edit-cover">cover</label>
-                                    <input type="file" class="form-control" name="cover" id="edit-old-cover" required/>
+                                    <input type="file" class="form-control" name="cover" id="edit-cover" required/>
                                 </div>
                             </div>
                         </div>
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="edit-id"/>
-                            <input type="hidden" name="old_cover" id="edit-old-cover"/>
+                            <input type="hidden" name="old_cover" id="edit-cover"/>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                             <button type="submit" class="btn btn-success">Update</button>
                         </div>
@@ -170,8 +170,9 @@
         $(function(){
             $(document).on('click', '#btn-edit-buku', function(){
                 let id = $(this).data('id');
+
                 $('#image-area').empty();
-                console.log(id);
+
                 $.ajax({
                     type: "get",
                     url: baseurl+'/admin/ajaxadmin/dataBuku/'+id,
@@ -184,15 +185,14 @@
                         $('#edit-id').val(res.id);
                         $('#edit-old-cover').val(res.cover);
 
-                            console.log(baseurl+"/storage/cover_buku/"+res.cover);
                         if (res.cover !== null){
-                            $('#image-area').append("<img src='"+baseurl+"/storage/cover_buku/"+res.cover+"' width='200px'/>");
+                            $('#image-area').append(`<img src="${baseurl}/storage/cover_buku/${res.cover}" width="200px"/>`);
                         } else {
                             $('#image-area').append('[Gambar tidak Tersedia]');
                         }
-                    },
-                });
-            });
-        });
+                    }
+                })
+            })
+        })
     </script>
 @stop
